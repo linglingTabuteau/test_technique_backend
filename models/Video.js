@@ -27,7 +27,4 @@ const Video = sequelize.define(
   }
 );
 
-// `sequelize.define` also returns the model
-// console.log(Video === sequelize.models.Video); // true
-
 module.exports = Video;

@@ -5,6 +5,7 @@ const sequelize = new Sequelize(
   "postgres://lingling@localhost:5432/test_technique"
 );
 
+// test connection database
 const testConnectionDabase = async () => {
   try {
     await sequelize.authenticate();

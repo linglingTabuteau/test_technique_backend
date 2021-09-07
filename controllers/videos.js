@@ -8,27 +8,18 @@ exports.getVideos = async (req, res, next) => {
 
 exports.postVideo = async (req, res, next) => {
   testConnectionDabase();
-
+  console.log("body", req.body);
   const name = req.body.name;
   const description = req.body.description;
   const url = req.body.url;
 
-  //   Video.create({
-  //     name: name,
-  //     description: description,
-  //     url: url,
-  //   })
-  //     .then((result) => {
-  //       console.log(result);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  await Video.create({
-    name: name,
-    description: description,
-    url: url,
-  });
+  try {
+    await Video.create({
+      name: name,
+      description: description,
+      url: url,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };

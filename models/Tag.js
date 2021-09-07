@@ -5,7 +5,6 @@ const { sequelize } = require("../database");
 const Tag = sequelize.define(
   "Tag",
   {
-    // Model attributes are defined here
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -22,7 +21,5 @@ const Tag = sequelize.define(
     // Other model options go here
   }
 );
-
-
 
 module.exports = Tag;
