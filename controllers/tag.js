@@ -15,13 +15,13 @@ exports.postTag = async (req, res, next) => {
 };
 
 exports.deleteTag = async (req, res, next) => {
-  const tagId = req.params.id;
+  const value = req.params.value;
   let toDeleteTag;
   try {
-    toDeleteTag = await Tag.findByPk(tagId);
+    // toDeleteTag = await Tag.findByPk(tagId);
+    toDeleteTag = await Tag.findOne({ where: { value: value } })
   } catch (err) {
     console.log(err);
   }
-  console.log("todeleteTag", toDeleteTag);
   await toDeleteTag.destroy();
 };
