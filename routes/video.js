@@ -1,6 +1,6 @@
 const express = require("express");
 
-const videosController = require("../controllers/videos");
+const videosController = require("../controllers/video");
 
 const router = express.Router();
 
@@ -10,10 +10,10 @@ router.get("/", videosController.getVideos);
 // post /video
 router.post("/", videosController.postVideo);
 
-// put /video
+// put /video/:videoId
 router.put("/:videoId", videosController.putVideo);
 
-// delete /video
+// delete /video/:videoId
 router.delete("/:videoId", videosController.deleteVideo);
 
 module.exports = router;
