@@ -23,8 +23,8 @@ exports.postVideo = async (req, res, next) => {
   }
 };
 
-exports.modifyVideo = async (req, res, next) => {
-  const videoId = req.body.id;
+exports.putVideo = async (req, res, next) => {
+  const videoId = req.params.videoId;
   const updatedName = req.body.name;
   const updatedDescription = req.body.description;
   const updatedUrl = req.body.url;
@@ -38,4 +38,15 @@ exports.modifyVideo = async (req, res, next) => {
     console.log(err);
   }
   await updatedVideo.save();
+};
+
+exports.deleteVideo = async (req, res, next) => {
+  const videoId = req.params.videoId;
+  let toDeleteVideo;
+  try {
+    toDeleteVideo = await Video.findByPk(videoId);
+  } catch (err) {
+    console.log(err);
+  }
+  await toDeleteVideo.destroy();
 };

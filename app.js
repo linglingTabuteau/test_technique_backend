@@ -8,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use("/videos", videoRoutes);
+app.use("/video", videoRoutes);
 
 (async () => {
   try {
