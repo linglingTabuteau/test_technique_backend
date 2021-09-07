@@ -8,7 +8,6 @@ exports.getVideos = async (req, res, next) => {
 
 exports.postVideo = async (req, res, next) => {
   testConnectionDabase();
-  console.log("body", req.body);
   const name = req.body.name;
   const description = req.body.description;
   const url = req.body.url;
@@ -22,4 +21,21 @@ exports.postVideo = async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+exports.modifyVideo = async (req, res, next) => {
+  const videoId = req.body.id;
+  const updatedName = req.body.name;
+  const updatedDescription = req.body.description;
+  const updatedUrl = req.body.url;
+  let updatedVideo;
+  try {
+    updatedVideo = await Video.findByPk(videoId);
+    updatedVideo.name = updatedName;
+    updatedVideo.description = updatedDescription;
+    updatedVideo.url = updatedUrl;
+  } catch (err) {
+    console.log(err);
+  }
+  await updatedVideo.save();
 };

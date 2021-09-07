@@ -10,4 +10,9 @@ router.get('/getvideo',videosController.getVideos );
 // post /videos/addvideo
 router.post("/postvideo", videosController.postVideo);
 
+
+// put /videos/putvideo
+router.put("/putvideo", videosController.modifyVideo);
+
+
 module.exports = router;
