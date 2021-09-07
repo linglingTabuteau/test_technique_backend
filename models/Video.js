@@ -1,10 +1,9 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database");
 
 const Video = sequelize.define(
   "Video",
   {
-    // Model attributes are defined here
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -13,12 +12,10 @@ const Video = sequelize.define(
     },
     name: {
       type: DataTypes.STRING,
-
       allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
-      // allowNull defaults to true
     },
     url: {
       type: DataTypes.STRING,
@@ -31,6 +28,6 @@ const Video = sequelize.define(
 );
 
 // `sequelize.define` also returns the model
-console.log(Video === sequelize.models.Video); // true
+// console.log(Video === sequelize.models.Video); // true
 
 module.exports = Video;

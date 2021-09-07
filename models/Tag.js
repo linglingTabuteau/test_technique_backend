@@ -1,4 +1,5 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
+
 const { sequelize } = require("../database");
 
 const Tag = sequelize.define(
@@ -22,8 +23,6 @@ const Tag = sequelize.define(
   }
 );
 
-// `sequelize.define` also returns the model
-console.log(Tag === sequelize.models.Tag); // true
 
 
 module.exports = Tag;

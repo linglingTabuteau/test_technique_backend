@@ -1,4 +1,5 @@
 const express = require("express");
+
 const videosController = require("../controllers/videos");
 
 const router = express.Router();
@@ -7,6 +8,6 @@ const router = express.Router();
 router.get('/getvideo',videosController.getVideos );
 
 // post /videos/addvideo
-router.post("/addvideo", videosController.addVideo);
+router.post("/postvideo", videosController.postVideo);
 
 module.exports = router;

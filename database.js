@@ -1,11 +1,11 @@
 const { Sequelize } = require("sequelize");
 
 // connect prosgres
-exports.sequelize = new Sequelize(
+const sequelize = new Sequelize(
   "postgres://lingling@localhost:5432/test_technique"
 );
 
-exports.testConnectionDabase = async () => {
+const testConnectionDabase = async () => {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
@@ -14,3 +14,7 @@ exports.testConnectionDabase = async () => {
   }
 };
 
+module.exports = {
+  sequelize: sequelize,
+  testConnectionDabase: testConnectionDabase,
+};

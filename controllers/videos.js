@@ -1,56 +1,34 @@
-const database = require("../database");
+const { testConnectionDabase } = require("../database");
 const Video = require("../models/Video");
 
-exports.getVideos = (req, res, next) => {
-  // test connection dataBase
-  database.testConnectionDabase();
-  let videos = this.getVideos();
-    // .then((videos) => {
-    //   console.log(videos);
-    //   return videos;
-    //   res.status(200).json(videos);
-    // })
-    // .then((vireo) => res.status(200).json(videos));
-};
-
-exports.addVideo = (req, res, next) => {
-  database.testConnectionDabase();
-  this.createVideo();
-
-  const name = req.body.nom;
-  const content = req.body.description;
-  res.status(201).json({
-    message: "video has benn added successfully",
-    video: {
-      name: name,
-      content: content,
-      createdAt: new Date().toISOString(),
-    },
-  });
-};
-
-// exports.create = async () => {
-//     await Tag.create({ value: "comedy" });
-//     // Jane exists in the database now!
-//     console.log(jane instanceof User); // true
-//     console.log(jane.name); // "Jane"
-//   };
-
-exports.createVideo = async () => {
-  await Video.sync();
-  await Video.create({
-    name: "JamesBond",
-    description: "very good movie",
-    url: "http...",
-  });
-  // Jane exists in the database now!
-  console.log(JamesBond instanceof Video); // true
-  console.log(JamesBond.description); // "Jane"
-};
-
-exports.getVideos = async () => {
-//   await Video.sync();
+exports.getVideos = async (req, res, next) => {
   let videos = await Video.findAll();
+  res.status(200).json(videos);
+};
 
-  return videos;
+exports.postVideo = async (req, res, next) => {
+  testConnectionDabase();
+
+  const name = req.body.name;
+  const description = req.body.description;
+  const url = req.body.url;
+
+  //   Video.create({
+  //     name: name,
+  //     description: description,
+  //     url: url,
+  //   })
+  //     .then((result) => {
+  //       console.log(result);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  await Video.create({
+    name: name,
+    description: description,
+    url: url,
+  });
 };

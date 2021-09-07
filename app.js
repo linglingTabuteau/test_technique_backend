@@ -1,6 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+
 const videoRoutes = require("./routes/videos");
+const { sequelize } = require("./database");
+
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -17,5 +21,15 @@ app.use(bodyParser.json());
 // });
 
 app.use("/videos", videoRoutes);
+
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    // app.listen(8080);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.listen(8080);
