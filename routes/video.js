@@ -13,6 +13,9 @@ router.post("/", videosController.postVideo);
 // put /video/:videoId
 router.put("/:videoId", videosController.putVideo);
 
+// put /video/:videoId
+router.put("/:videoId/tags", videosController.putVideoTags);
+
 // delete /video/:videoId
 router.delete("/:videoId", videosController.deleteVideo);
 

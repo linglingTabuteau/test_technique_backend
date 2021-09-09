@@ -1,8 +1,17 @@
 const { testConnectionDabase } = require("../database");
 const Video = require("../models/Video");
+const Tag = require("../models/Tag");
 
 exports.getVideos = async (req, res, next) => {
-  let videos = await Video.findAll();
+  let videos = await Video.findAll({
+    include: {
+      model: Tag,
+      through: {
+        attributes: []
+      }
+    }
+  });
+
   res.status(200).json(videos);
 };
 
@@ -20,7 +29,10 @@ exports.postVideo = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
+    res.status(500).json('an error occured');
   }
+
+  res.status(201).json();
 };
 
 exports.putVideo = async (req, res, next) => {
@@ -38,6 +50,21 @@ exports.putVideo = async (req, res, next) => {
     console.log(err);
   }
   await updatedVideo.save();
+};
+
+exports.putVideoTags = async (req, res, next) => {
+  const videoId = req.params.videoId;
+  const tagIds = req.body;
+
+  try {
+    let video = await Video.findByPk(videoId);
+    video.setTags(tagIds);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json('an error occured');
+  }
+
+  res.status(200).json();
 };
 
 exports.deleteVideo = async (req, res, next) => {
